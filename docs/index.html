@@ -248,7 +248,10 @@
         let current_fig_type = "scatter";
         let current_url_icos = "";
         let current_objIds_icos = [];
-        let current_icos_syllabus = {}
+        let current_icos_syllabus = {};
+        
+        const basePath = window.location.pathname.split('/').slice(0, 2).join('/');
+        const syllabusUrl = `${basePath}/docs/syllabus.json`;
 
         function add_option(mother, label, value, active = false) {
             const new_option = document.createElement('option');
