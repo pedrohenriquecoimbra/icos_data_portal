@@ -1,1 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
 
+        .fluid-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h4 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        iframe {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="album py-1 bg-body-tertiary">
+        <div class="p-5">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="px-2 py-1">
+                            Dataset
+                            <select name="site" id="ICOS_NRT_db" class="form-select">
+                            </select>
+                        </div>
+                        <div class="px-2 py-1">
+                            <div class="d-flex justify-content-between">
+                                <div>Station of origin</div>
+                                <div>
+                                    <span id="invert_filter" for="ICOS_NRT_site" class="fas fa-retweet"
+                                        title="Invert filter selection"
+                                        style="font-size: 16px;  opacity:0.5; cursor: pointer;"></span>
+                                    <span id="includeall_filter" class="ICOS_NRT_site" title="Select all"
+                                        style="font-size: 16px;  opacity:0.5; cursor: pointer;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                            class="bi bi-check-all" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z" />
+                                        </svg></span>
+                                    <span style="font-size: 16px;  opacity:0.3;">|</span>
+                                    <span id="etc_forest_filter" class="fas fa-tree" title="Forest filter selection"
+                                        style="font-size: 16px;  opacity:0.5; cursor: pointer;">
+                                    </span>
+                                    <span id="etc_crop_filter" class="fas fa-seedling" title="Crop filter selection"
+                                        style="font-size: 16px;  opacity:0.5; cursor: pointer;"></span>
+                                    <span id="etc_grass_filter" title="Grassland filter selection"
+                                        style="font-size: 16px;  opacity:0.5; cursor: pointer;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" fill="currentColor"
+                                            viewBox="0 0 640 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                            <path
+                                                d="M96 224l0 32 0 160c0 17.7 14.3 32 32 32l32 0c17.7 0 32-14.3 32-32l0-88.2c9.9 6.6 20.6 12 32 16.1l0 24.2c0 8.8 7.2 16 16 16s16-7.2 16-16l0-16.9c5.3 .6 10.6 .9 16 .9s10.7-.3 16-.9l0 16.9c0 8.8 7.2 16 16 16s16-7.2 16-16l0-24.2c11.4-4 22.1-9.4 32-16.1l0 88.2c0 17.7 14.3 32 32 32l32 0c17.7 0 32-14.3 32-32l0-160 32 32 0 49.5c0 9.5 2.8 18.7 8.1 26.6L530 427c8.8 13.1 23.5 21 39.3 21c22.5 0 41.9-15.9 46.3-38l20.3-101.6c2.6-13-.3-26.5-8-37.3l-3.9-5.5 0-81.6c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 14.4-52.9-74.1C496 86.5 452.4 64 405.9 64L272 64l-16 0-64 0-48 0C77.7 64 24 117.7 24 184l0 54C9.4 249.8 0 267.8 0 288l0 17.6c0 8 6.4 14.4 14.4 14.4C46.2 320 72 294.2 72 262.4l0-6.4 0-32 0-40c0-24.3 12.1-45.8 30.5-58.9C98.3 135.9 96 147.7 96 160l0 64zM560 336a16 16 0 1 1 32 0 16 16 0 1 1 -32 0zM166.6 166.6c-4.2-4.2-6.6-10-6.6-16c0-12.5 10.1-22.6 22.6-22.6l178.7 0c12.5 0 22.6 10.1 22.6 22.6c0 6-2.4 11.8-6.6 16l-23.4 23.4C332.2 211.8 302.7 224 272 224s-60.2-12.2-81.9-33.9l-23.4-23.4z" />
+                                        </svg>
+                                    </span>
+                                    <span id="etc_other_filter" title="Other types filter selection"
+                                        style="font-size: 16px; opacity:0.5; cursor: pointer;"><strong>∴</strong></span>
+                                    <span id="co_fr_other_filter" title="French filter selection"
+                                        style="font-size: 16px; opacity:0.5; cursor: pointer;"><strong>FR</strong></span>
+                                </div>
+                            </div>
+                            <select name="site" id="ICOS_NRT_site" class="responsiveSelect2" multiple>
+                            </select>
+                        </div>
+                        <div class="py-1"></div>
+                        <div class="px-2 py-1">Axis</div>
+                        <div class="px-2 py-1 d-flex align-items-center">
+                            <div>
+                                <label title="Y-axis"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+                                        width="16" height="16" fill="currentColor" class="me-2">
+                                        <path opacity="0.4"
+                                            d="m288 288c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm96 64c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm32-192c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm72 272h-440v-376c0-13.256-10.746-24-24-24s-24 10.744-24 24v392c0 17.6 14.4 32 32 32h456c13.254 0 24-10.746 24-24 0-13.256-10.746-24-24-24zm-296-240c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm-32 160c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32z">
+                                        </path>
+                                        <path opacity="0.01"
+                                            d="m530.094,448 m-100,-400 l-300,200 l300,200 m50,20 h-440 v-376 c0,-13.25,-10.75,-24,-24,-24 s-24,10.75,-24,24 v392 c0,17.594,14.406,32,32,32 h456 c13.25,0,24,-10.75,24,-24 s-10.75,-24,-24,-24 Z">
+                                        </path>
+                                        <path
+                                            d="m50.094,448 v-376 c0,-13.25,-10.75,-24,-24,-24 s-24,10.75,-24,24 v392 c0,13.25,10.75,24,24,24 s24,-10.75,24,-24 Z">
+                                        </path>
+                                    </svg></label>
+                            </div>
+                            <div class="w-100"><select name="y" id="ICOS_NRT_y" class="form-select"></select></div>
+                            </select>
+                        </div>
+                        <div class="px-2 py-1 d-flex align-items-center">
+                            <div>
+                                <label title="Y2-axis"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+                                        width="16" height="16" fill="currentColor" class="me-2">
+                                        <path opacity="0.4"
+                                            d="m288 288c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm96 64c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm32-192c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm72 272h-440v-376c0-13.256-10.746-24-24-24s-24 10.744-24 24v392c0 17.6 14.4 32 32 32h456c13.254 0 24-10.746 24-24 0-13.256-10.746-24-24-24zm-296-240c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm-32 160c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32z">
+                                        </path>
+                                        <path
+                                            d="m500.094,448 v-376 c0,-13.25,-10.75,-24,-24,-24 s-24,10.75,-24,24 v392 c0,13.25,10.75,24,24,24 s24,-10.75,24,-24 Z">
+                                        </path>
+                                    </svg></label>
+                            </div>
+                            <div class="w-100"><select name="y2" id="ICOS_NRT_y2" class="form-select"></select></div>
+                            </select>
+                        </div>
+                        <div class="px-2 py-1 d-flex align-items-center">
+                            <div>
+                                <label title="X-axis"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+                                        width="16" height="16" fill="currentColor" class="me-2">
+                                        <path opacity="0.4"
+                                            d="m288 288c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm96 64c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm32-192c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm72 272h-440v-376c0-13.256-10.746-24-24-24s-24 10.744-24 24v392c0 17.6 14.4 32 32 32h456c13.254 0 24-10.746 24-24 0-13.256-10.746-24-24-24zm-296-240c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm-32 160c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32z">
+                                        </path>
+                                        <path opacity="0.01"
+                                            d="m500.094,448 m-400,-350 l200,300 l200,-300 m0,350 h-440 v-376 c0,-13.25,-10.75,-24,-24,-24 s-24,10.75,-24,24 v392 c0,17.594,14.406,32,32,32 h456 c13.25,0,24,-10.75,24,-24 s-10.75,-24,-24,-24 Z">
+                                        </path>
+                                        <path fill="currentColor"
+                                            d="m500.094,448 h-440 s-24,0,-24,24 c0,13.25,10.75,24,24,24 h456 c13.25,0,24,-10.75,24,-24 s-10.75,-24,-24,-24 Z">
+                                    </svg></label>
+                            </div>
+                            <div class="w-100"><select name="x" id="ICOS_NRT_x" class="form-select"></select></div>
+                            </select>
+                        </div>
+                        <div class="py-1"></div>
+                        <div class="px-2 py-1">
+                            <div class="btn-group" role="group" aria-label="Toggle between scatter and line charts">
+                                <input type="radio" class="btn-check" name="chart-type" id="scatter-chart" value="scatter"
+                                    autocomplete="off" checked="">
+                                <label class="btn btn-outline-secondary d-flex align-items-center" for="scatter-chart"
+                                    title="View scatter chart"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+                                        width="16" height="16" fill="currentColor" class="me-2">
+                                        <path
+                                            d="m288 288c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm96 64c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm32-192c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm72 272h-440v-376c0-13.256-10.746-24-24-24s-24 10.744-24 24v392c0 17.6 14.4 32 32 32h456c13.254 0 24-10.746 24-24 0-13.256-10.746-24-24-24zm-296-240c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32zm-32 160c17.674 0 32-14.328 32-32 0-17.674-14.326-32-32-32s-32 14.326-32 32c0 17.672 14.326 32 32 32z">
+                                        </path>
+                                    </svg>Scatter</label>
+                                <input type="radio" class="btn-check" name="chart-type" id="line-chart" value="line"
+                                    autocomplete="off">
+                                <label class="btn btn-outline-secondary d-flex align-items-center" for="line-chart"
+                                    title="View line chart"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
+                                        width="16" height="16" fill="currentColor" class="me-2">
+                                        <path
+                                            d="m144.953 304.953 63.047-63.031 79.047 79.031c4.672 4.672 10.812 7.047 16.953 7.047s12.281-2.344 16.953-7.047l152.018-151.986c9.375-9.375 9.371-24.576-.008-33.946-9.371-9.365-24.561-9.361-33.928.008l-135.035 135.018-79.053-79.006c-9.375-9.371-24.574-9.367-33.947.006l-80 80c-9.375 9.375-9.375 24.562 0 33.953 9.391 9.375 24.578 9.344 33.953-.047zm343.047 127.047h-440v-376c0-13.25-10.75-24-24-24s-24 10.75-24 24v392c0 17.594 14.406 32 32 32h456c13.25 0 24-10.75 24-24s-10.75-24-24-24z">
+                                        </path>
+                                    </svg>Line</label>
+                            </div>
+                            <a id="ICOS_NRT_FULLSCREEN" class="btn btn-outline-secondary"
+                                href="https://data.icos-cp.eu/dygraph-light/?objId=4PbarnhdNnnBRrLkWm_CUPnD&amp;x=TIMESTAMP&amp;y=G_3_1_2&amp;type=scatter&amp;linking=overlap">⇱</a>
+                        </div>
+                        <div class="px-2 py-1">
+                            <details class="dropdown-details" style="display: none;">
+                                <summary class="summary-button">Use preview data <i class="fas fa-chevron-down px-1"
+                                        style="font-size: 0.8rem;"></i></summary>
+                                <div class="dropdown" style="width: 100%; right: 0px;">
+                                    <div class="p-3 border-bottom">
+                                        <p>Embed preview</p>
+                                        <div style="display: block; white-space: nowrap;">
+                                            <span class="fs-6">
+                                                <span class="input-group"><input id="ICOS_NRT_EMBED" type="text"
+                                                        class="form-control form-control-sm" readonly=""
+                                                        value="<iframe width=&quot;620&quot; height=&quot;315&quot; frameborder=&quot;0&quot; src=&quot;https://data.icos-cp.eu/dygraph-light/?objId=4PbarnhdNnnBRrLkWm_CUPnD&amp;x=TIMESTAMP&amp;y=G_3_1_2&amp;type=scatter&amp;linking=overlap&quot;></iframe>">
+                                                    <button class="btn btn-outline-secondary"
+                                                        title="Click to copy the code to embed the preview"
+                                                        style="border-color: rgb(206, 212, 218);">
+                                                        <span class="fas fa-copy btn-copy-to-clipboard"></span>
+                                                    </button>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="mb-2"><span>Access preview data as CSV</span><span
+                                                class="float-end"><span class="fas fa-question-circle"
+                                                    title="Click to toggle help"
+                                                    style="font-size: 15px; cursor: help; padding: 5px;"></span></span>
+                                        </div>
+                                        <div class="mb-2 text-muted" style="font-size: 0.875rem;">For advanced use, such as
+                                            parsing the
+                                            data with a program. Please read the help for more information.</div>
+                                        <div style="display: block; white-space: nowrap;">
+                                            <span class="fs-6">
+                                                <span class="input-group"><input id="ICOS_NRT_TOCSV" type="text"
+                                                        class="form-control form-control-sm" readonly=""
+                                                        value="https://data.icos-cp.eu/csv/4PbarnhdNnnBRrLkWm_CUPnD?col=TIMESTAMP&amp;col=G_3_1_2">
+                                                    <button class="btn btn-outline-secondary"
+                                                        title="Click to copy download URL to clipboard"
+                                                        style="border-color: rgb(206, 212, 218);">
+                                                        <span class="fas fa-copy btn-copy-to-clipboard"></span>
+                                                    </button>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" style="width: calc(100% - 100%/6);">
+                    <div class="card shadow-sm">
+                        <iframe id="ICOS_NRT"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    
+    <!-- Include Select2 -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+    
+    <script>
+        var copyTextareaBtn = document.querySelectorAll('.btn-copy-to-clipboard');
+
+        copyTextareaBtn.forEach(btn => btn.addEventListener('click', function (event) {
+            console.log(btn.parentNode.parentNode)
+            var copyTextarea = btn.parentNode.parentNode.querySelector('input');
+            copyTextarea.focus();
+            copyTextarea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'successful' : 'unsuccessful';
+                console.log('Copying text command was ' + msg);
+            } catch (err) {
+                console.log('Oops, unable to copy');
+            }
+        })
+        );
+    </script>
+    <script>
+        let current_dbs = [];
+        let current_sites = [];
+        let current_fig_x = "TIMESTAMP";
+        let current_fig_y = "0";
+        let current_fig_type = "scatter";
+        let current_url_icos = "";
+        let current_objIds_icos = [];
+        let current_icos_syllabus = {}
+
+        function add_option(mother, label, value, active = false) {
+            const new_option = document.createElement('option');
+            new_option.setAttribute('value', value);
+            if (active) { new_option.setAttribute('selected', "selected") };
+            new_option.textContent = label;
+            mother.appendChild(new_option);
+        };
+
+        // Import datasets / sites avaialble
+        function import_availables(data) {
+            const current_db = document.querySelector("#ICOS_NRT_db");
+            const current_st = document.querySelector("#ICOS_NRT_site");
+            data.db.forEach(d => {
+                add_option(current_db, d.replace('_', ' '), d);
+            })
+            data.site.forEach(d => {
+                add_option(current_st, d, d);
+            })
+            current_dbs = data.db;
+            current_sites = data.site;
+
+            //update selector
+            var $site_select = $(".responsiveSelect2").select2({
+                width: '100%',
+                allowClear: true
+            });
+
+            $("#includeall_filter.ICOS_NRT_site").on("click", function () {
+                $site_select.val(data.site).trigger("change");
+            });
+
+            function getAllSelectedOptions(id, inverse = false) {
+                const select_lookup = document.getElementById(id);
+                var opts = select_lookup && select_lookup.options;
+                let selected_options = [];
+                for (var i = 0, iLen = opts.length; i < iLen; i++) {
+                    if (inverse) {
+                        if (!opts[i].selected) { selected_options.push(opts[i].value) }
+                    } else {
+                        if (opts[i].selected) { selected_options.push(opts[i].value) }
+                    }
+                }
+                return selected_options
+            }
+            $("#invert_filter").on("click", function () {
+                $site_select.val(getAllSelectedOptions('ICOS_NRT_site', true)).trigger("change");
+            });
+            $("#etc_forest_filter").on("click", function () {
+                $site_select.val(getAllSelectedOptions('ICOS_NRT_site').concat(data.site_type['forest'])).trigger("change");
+            });
+            $("#etc_crop_filter").on("click", function () {
+                $site_select.val(getAllSelectedOptions('ICOS_NRT_site').concat(data.site_type['crop'])).trigger("change");
+            });
+            $("#etc_grass_filter").on("click", function () {
+                $site_select.val(getAllSelectedOptions('ICOS_NRT_site').concat(data.site_type['grass'])).trigger("change");
+            });
+            $("#etc_other_filter").on("click", function () {
+                $site_select.val(getAllSelectedOptions('ICOS_NRT_site').concat(data.site_type['other'])).trigger("change");
+            });
+            $("#co_fr_other_filter").on("click", function () {
+                $site_select.val(getAllSelectedOptions('ICOS_NRT_site').concat(data.site.filter((site_code) => site_code.startsWith("FR-")))).trigger("change");
+            });
+            //nodeforOpt.forEach(opt => {if (opt.selected) {opt.selected = false} else {opt.selected = true}})
+        }
+
+        // Update current figure type
+        const btn = document.querySelector('.btn-group');
+        const radioButtons = document.querySelectorAll('input[name="chart-type"]');
+        btn.addEventListener("click", () => {
+            let selectedType;
+            for (const radioButton of radioButtons) {
+                if (radioButton.checked) {
+                    selectedType = radioButton.value;
+                    break;
+                }
+            }
+            // show the output:
+            console.log(selectedType ? `You selected ${selectedType}` : `You haven't selected any size`);
+            current_fig_type = selectedType;
+            update_ICOS_NRT_xy();
+        });
+
+        // update cols after change in db
+        function update_ICOS_NRT_db() {
+            const icos_nrt_x = document.getElementById('ICOS_NRT_x');
+            const icos_nrt_y = document.getElementById('ICOS_NRT_y');
+            const icos_nrt_y2 = document.getElementById('ICOS_NRT_y2');
+            icos_nrt_x.innerHTML = ''
+            icos_nrt_y.innerHTML = ''
+            icos_nrt_y2.innerHTML = ''
+
+            const icos_nrt_db = document.getElementById('ICOS_NRT_db');
+            var options = icos_nrt_db && icos_nrt_db.options;
+            let vars_opt_labels = [];
+            let select_x = false;
+            let select_y = false;
+            //let vars_opt_values = [];
+
+            for (var i = 0, iLen = options.length; i < iLen; i++) {
+                opt = options[i];
+                if (opt.selected) {
+                    // update the vars_opt_labels & vars_opt_values
+                    current_icos_syllabus.col_db[opt.value].forEach((element, index) => {
+                        if (!(element in vars_opt_labels)) {
+                            if (element[0] == current_fig_x) { select_x = true };
+                            if (element[0] == current_fig_y) { select_y = true };
+                            add_option(icos_nrt_x, element[1], element[0], select_x);
+                            add_option(icos_nrt_y, element[1], element[0], select_y);
+                            add_option(icos_nrt_y2, element[1], element[0], select_y);
+                            select_x = false;
+                            select_y = false;
+                            vars_opt_labels.push(element[1]);
+                        }
+                    });
+                }
+            }
+        }
+
+        // update obsIds after change in db
+        function update_ICOS_NRT_url() {
+            // e.g.: "https://data.icos-cp.eu/dygraph-light/?objId=owXHbW4AsYUYo_fI3soJMvx7,XccvvjbrcxNfFLSCMZWLJR14,gLWoqDZ2UAXnq4IQlTACsvuw&x=TIMESTAMP&y=G_2_1_1&type=line&linking=overlap&legendLabels=,"
+            //let url_icos_nrt = "https://data.icos-cp.eu/dygraph-light/"
+            const icos_nrt_iframe = document.getElementById('ICOS_NRT');
+
+            const icos_nrt_db = document.getElementById('ICOS_NRT_db');
+            var db_opts = icos_nrt_db && icos_nrt_db.options;
+            const icos_nrt_select = document.getElementById('ICOS_NRT_site');
+            var site_opts = icos_nrt_select && icos_nrt_select.options;
+            current_objIds_icos = [];
+
+            //url_icos_nrt = url_icos_nrt + "?objId="
+            for (var j = 0, jLen = db_opts.length; j < jLen; j++) {
+                dopt = db_opts[j];
+                if (dopt.selected) {
+                    for (var i = 0, iLen = site_opts.length; i < iLen; i++) {
+                        sopt = site_opts[i];
+                        if (sopt.selected) {
+                            //url_icos_nrt = url_icos_nrt + data.data[dopt][sopt.value]['id'] + ","
+                            current_icos_syllabus.data[dopt.value][sopt.value]['id'].forEach(d => current_objIds_icos.push(d));
+                        }
+                    }
+                }
+            }
+        }
+
+        function update_ICOS_NRT_availablecols() {
+            let available_cols = [];
+
+            const icos_nrt_db = document.getElementById('ICOS_NRT_db');
+            var db_opts = icos_nrt_db && icos_nrt_db.options;
+
+            const icos_nrt_select = document.getElementById('ICOS_NRT_site');
+            var site_opts = icos_nrt_select && icos_nrt_select.options;
+
+            const icos_nrt_x = document.getElementById('ICOS_NRT_x');
+            const icos_nrt_y = document.getElementById('ICOS_NRT_y');
+            const icos_nrt_y2 = document.getElementById('ICOS_NRT_y2');
+
+            //url_icos_nrt = url_icos_nrt + "?objId="
+            for (var j = 0, jLen = db_opts.length; j < jLen; j++) {
+                dopt = db_opts[j];
+                if (dopt.selected) {
+                    for (var i = 0, iLen = site_opts.length; i < iLen; i++) {
+                        sopt = site_opts[i];
+                        if (sopt.selected) {
+                            available_cols = available_cols.concat(current_icos_syllabus.data[dopt.value][sopt.value]['options_values']);
+                        }
+                    }
+                }
+            }
+            for (var i = 0, iLen = icos_nrt_x.children.length; i < iLen; i++) {
+                if (available_cols.includes(icos_nrt_x.children[i].value)) {
+                    icos_nrt_x.children[i].hidden = false;
+                } else {
+                    icos_nrt_x.children[i].hidden = true;
+                }
+            }
+            for (var i = 0, iLen = icos_nrt_y.children.length; i < iLen; i++) {
+                if (available_cols.includes(icos_nrt_y.children[i].value)) {
+                    icos_nrt_y.children[i].hidden = false;
+                } else {
+                    icos_nrt_y.children[i].hidden = true;
+                }
+            }
+            for (var i = 0, iLen = icos_nrt_y2.children.length; i < iLen; i++) {
+                if (available_cols.includes(icos_nrt_y2.children[i].value)) {
+                    icos_nrt_y2.children[i].hidden = false;
+                } else {
+                    icos_nrt_y2.children[i].hidden = true;
+                }
+            }
+        }
+
+        function update_ICOS_NRT_xy() {
+            // e.g.: "https://data.icos-cp.eu/dygraph-light/?objId=owXHbW4AsYUYo_fI3soJMvx7,XccvvjbrcxNfFLSCMZWLJR14,gLWoqDZ2UAXnq4IQlTACsvuw&x=TIMESTAMP&y=G_2_1_1&type=line&linking=overlap&legendLabels=,"
+            //let url_icos_nrt = current_url_icos;
+            let url_icos_nrt = "https://data.icos-cp.eu/dygraph-light/"
+            url_icos_nrt = url_icos_nrt + "?objId="
+            current_objIds_icos.forEach(objId => { url_icos_nrt = url_icos_nrt + objId + "," })
+            url_icos_nrt = url_icos_nrt.slice(0, -1)
+
+            const icos_nrt_iframe = document.getElementById('ICOS_NRT');
+            const icos_nrt_fullsc = document.getElementById('ICOS_NRT_FULLSCREEN');
+            const icos_nrt_embed = document.getElementById('ICOS_NRT_EMBED');
+            const icos_nrt_tocsv = document.getElementById('ICOS_NRT_TOCSV');
+
+            const icos_nrt_x = document.getElementById('ICOS_NRT_x');
+            const icos_nrt_y = document.getElementById('ICOS_NRT_y');
+            const icos_nrt_y2 = document.getElementById('ICOS_NRT_y2');
+
+            url_icos_nrt = url_icos_nrt + "&x=" + icos_nrt_x.value;
+            url_icos_nrt = url_icos_nrt + "&y=" + icos_nrt_y.value;
+            if (icos_nrt_y2.value != "0") { url_icos_nrt = url_icos_nrt + "&y2=" + icos_nrt_y2.value; };
+            let url_icos_nrt_csv = url_icos_nrt.replace("/dygraph-light/", "/csv/")
+            url_icos_nrt = url_icos_nrt + "&type=" + current_fig_type;
+            url_icos_nrt = url_icos_nrt + "&linking=overlap&legendLabels=,";
+            if ((icos_nrt_x.value != "0") & (icos_nrt_y.value != 0)) {
+                icos_nrt_iframe.setAttribute('src', url_icos_nrt);
+                icos_nrt_fullsc.setAttribute("href", url_icos_nrt)
+                icos_nrt_embed.setAttribute("value", "<iframe width=&quot;620&quot; height=&quot;315&quot; frameborder=&quot;0&quot; src=&quot;" + url_icos_nrt + "&quot;></iframe>")
+                icos_nrt_tocsv.setAttribute("value", url_icos_nrt_csv)
+                current_url_icos = url_icos_nrt;
+            }
+        }
+
+        fetch('/docs/icos_syllabus.json')
+            .then(response => response.json())  // Convert response to text
+            .then(data => {
+                current_icos_syllabus = data;
+                import_availables(data);
+                update_ICOS_NRT_url();
+                update_ICOS_NRT_db();
+            })
+            .catch(error => {
+                console.error('Error fetching the source document:', error);
+            });
+
+        $('#ICOS_NRT_db').on('change', function (e) {
+            update_ICOS_NRT_db();
+            update_ICOS_NRT_url();
+            update_ICOS_NRT_availablecols();
+        })
+        $('#ICOS_NRT_site').on('change', function (e) {
+            update_ICOS_NRT_url();
+            update_ICOS_NRT_availablecols();
+            update_ICOS_NRT_xy();
+        })
+        $('#ICOS_NRT_x').on('change', function (e) {
+            update_ICOS_NRT_xy();
+        })
+        $('#ICOS_NRT_y').on('change', function (e) {
+            update_ICOS_NRT_xy();
+        })
+        $('#ICOS_NRT_y2').on('change', function (e) {
+            update_ICOS_NRT_xy();
+        })
+    </script>
+</body>
+</html>
